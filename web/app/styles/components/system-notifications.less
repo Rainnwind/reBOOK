@@ -1,0 +1,30 @@
+.system-notifications {
+    z-index: @system_notification_z;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    width: 200px;
+    height: 600px;
+    overflow: hidden;
+    .system-notification {
+        display: flex;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        color: white;
+        .fa {
+            margin-right: 5px;
+        }
+    }
+    .system-notification.SUCCESS {
+        background-color: @green;
+    }
+    .system-notification.INFO {
+        background-color: @blue;
+    }
+    .system-notification.ERROR {
+        background-color: @red;
+    }
+}

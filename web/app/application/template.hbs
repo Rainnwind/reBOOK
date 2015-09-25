@@ -1,0 +1,23 @@
+<div id="topbar">
+    {{partial "partials/topbar"}}
+</div>
+<div class="main-content">
+    <div class="system-notifications">
+        {{#each system-notifications as |notification index|}}
+        {{system-notification model=notification index=index}}
+        {{/each}}
+    </div>
+    {{outlet}}
+
+
+    {{#comp-modal class="hide"}}
+        {{comp-modal/create-user user=model}}
+    {{/comp-modal}}
+    {{#comp-modal}}
+        {{comp-modal/sign-in user=model}}
+    {{/comp-modal}}
+
+</div>
+<footer>
+    {{partial "partials/footer"}}
+</footer>
