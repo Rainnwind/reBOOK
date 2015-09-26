@@ -9,7 +9,27 @@ export default Ember.Route.extend(notificationMix, {
                 return user;
             })
             .catch(function(err) {
-                undefined
+                return {}
             });
+    },
+    actions: {
+        openModal: function(modalName, model) {
+            console.log(model);
+            return this.render(modalName, {
+                into: "application",
+                outlet: "modal",
+                model: model,
+                controller: modalName
+            });
+        },
+        closeModal: function() {
+            return this.disconnectOutlet({
+                outlet: 'modal',
+                parentView: 'application',
+            });
+        },
+        refresh_application: function() {
+            this.refresh();
+        }
     }
 });

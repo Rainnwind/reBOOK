@@ -4,6 +4,8 @@ module.exports = function(_couch_profile) {
 
     this.user_id            = _couch_profile._id;
 
+    this.username           = _couch_profile.username;
+    
     this.first_name         = _couch_profile.first_name;
 
     this.last_name          = _couch_profile.last_name;

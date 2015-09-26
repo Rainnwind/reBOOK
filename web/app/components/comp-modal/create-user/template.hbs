@@ -1,7 +1,10 @@
+{{#comp-modal}}
 <form {{action "create_user" on="submit"}}>
     {{input type="text" placeholder="First name" value=first_name}}
     <br>
     {{input type="text" placeholder="Last name" value=last_name}}
+    <br>
+    {{input type="text" placeholder="Username" value=username}}
     <br>
     {{input type="text" placeholder="E-mail" value=email}}
     <br>
@@ -15,3 +18,4 @@
     <br>
     {{input type="submit" value="Create user"}}
 </form>
+{{/comp-modal}}

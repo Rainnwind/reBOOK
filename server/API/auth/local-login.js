@@ -2,10 +2,11 @@ var passport = require("passport"),
     API_PROFILE = require(process.env.APP_API_PROFILE);
 
 module.exports = function(_request, _response, _next) {
-    if (!API_PROFILE.is_email(_request.query.email)) {
+    if (!_request.query.username) {
         _response
             ._ember_response
-            ._ERROR("E-mail is invalid")
+            ._ERROR("No username given")
+            ._STATUS(400)
             ._send();
     } else if (!_request.query.password || _request.query.password.length < 8) {
         _response

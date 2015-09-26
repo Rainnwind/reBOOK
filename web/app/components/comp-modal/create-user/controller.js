@@ -1,13 +1,12 @@
 import Ember from 'ember';
-
 import requestMix from "../../../mixins/request";
 import notificationMix from "../../../mixins/notifications";
-export default Ember.Component.extend(requestMix, notificationMix, {
 
+export default Ember.Controller.extend(requestMix, notificationMix, {
     classNames: ["create-user"],
-    store: Ember.inject.service(),
     first_name: "",
     last_name: "",
+    username: "",
     email: "",
     phone_number: "",
     password: "",
@@ -20,6 +19,7 @@ export default Ember.Component.extend(requestMix, notificationMix, {
             _this.POST("auth/local", {
                     first_name: _this.get("first_name"),
                     last_name: _this.get("last_name"),
+                    username: _this.get("username"),
                     email: _this.get("email"),
                     phone_number: _this.get("phone_number"),
                     password: _this.get("password"),
@@ -29,6 +29,7 @@ export default Ember.Component.extend(requestMix, notificationMix, {
                 .then(function(result) {
                     _this.set("first_name", "");
                     _this.set("last_name", "");
+                    _this.set("username", "");
                     _this.set("email", "");
                     _this.set("phone_number", "");
                     _this.set("password", "");
@@ -36,11 +37,12 @@ export default Ember.Component.extend(requestMix, notificationMix, {
                     _this.set("terms_accepted", false);
                     _this.ALL_RESPONSE(result);
 
-                    return _this.get("store").findRecord("user", "user");
+                    return _this.store.findRecord("user", "user");
                 })
                 .then(function(user) {
                     _this.SUCCESS("Welcome back " + user.get("first_name") + " " + user.get("last_name"));
-                    _this.set("user", user);
+                    _this.send("refresh_application");
+                    _this.send("closeModal");
                 })
                 .catch(function(err) {
                     _this.CATCH_RESPONSE(err);

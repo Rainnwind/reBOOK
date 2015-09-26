@@ -24,3 +24,5 @@ process.env.APP_LOCAL_USER                                      = path.join(__di
 //API - APP
 process.env.APP_API_PROFILE                                     = path.join(__dirname, "./LIB/APP/profile.js");
 process.env.APP_API_TIME                                        = path.join(__dirname, "./LIB/APP/time.js");
+
+process.env.APP_API_MAIL                                        = path.join(__dirname, "./LIB/MAIL");

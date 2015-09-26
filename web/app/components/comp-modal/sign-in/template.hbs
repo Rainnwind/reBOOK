@@ -1,7 +1,8 @@
+{{#comp-modal}}
 <div class="local-sign-in">
     <h3>Sign in with username/password</h3>
     <form {{action "sign_in" on="submit"}}>
-        {{input type="text" placeholder="E-mail" value=email}}
+        {{input type="text" placeholder="Username" value=username}}
         {{input type="password" placeholder="Password" value=password}}
         {{check-box checked=remember_me label_after="Husk mig"}}
         {{input type="submit" value="Sign in"}}
@@ -12,3 +13,4 @@
     <a class="fa fa-google-plus" {{action "social_signin" "api/auth/google"}}>google</a>
     <a class="fa fa-facebook" {{action "social_signin" "api/auth/facebook"}}>facebook</a>
 </div>
+{{/comp-modal}}

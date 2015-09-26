@@ -2,21 +2,20 @@
     {{partial "partials/topbar"}}
 </div>
 <div class="main-content">
+    {{#unless model.verfied_since}}
+    <div class="verify-profile">
+        Your e-mail is not yet verified - Click here to verify
+    </div>
+    {{/unless}}
     <div class="system-notifications">
         {{#each system-notifications as |notification index|}}
         {{system-notification model=notification index=index}}
         {{/each}}
     </div>
     {{outlet}}
-
-
-    {{#comp-modal class="hide"}}
-        {{comp-modal/create-user user=model}}
-    {{/comp-modal}}
-    {{#comp-modal}}
-        {{comp-modal/sign-in user=model}}
-    {{/comp-modal}}
-
+    <button {{action "openModal" "components/comp-modal/create-user"}}>Create user</button>
+    <button {{action "openModal" "components/comp-modal/sign-in"}}>Sign in</button>
+    {{outlet "modal"}}
 </div>
 <footer>
     {{partial "partials/footer"}}

@@ -7,10 +7,8 @@ var NANO = require(process.env.APP_NANO),
     LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function() {
-
-
     passport.use('local-signup', new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
@@ -19,7 +17,7 @@ module.exports = function() {
                 if (!err) {
                     done(null, _request.body);
                 } else if (err.statusCode === 409) {
-                    done("E-mail is already in use")
+                    done("Username is already in use")
                 } else {
                     done(err);
                 }

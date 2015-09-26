@@ -23,7 +23,6 @@ module.exports = function() {
                     done(null, body);
                 } else if (err.statusCode === 404) {
                     var _new_user = new USERS_COUCH_PROFILE();
-                    console.log(profile);
                     _new_user._id = profile.id;
                     _new_user.first_name = profile.name.givenName || undefined;
                     _new_user.last_name = profile.name.familyName || undefined;

@@ -10,18 +10,20 @@ var NANO = require(process.env.APP_NANO),
 module.exports = function() {
 
     passport.use('local-login', new LocalStrategy({
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true
         },
-        function(req, email, password, done) {
-            DB_USERS.get(API_PROFILE.email_to_char(email), function(err, body) {
+        function(req, username, password, done) {
+            DB_USERS.get(API_PROFILE.username_to_char(username), function(err, body) {
                 if (!err) {
                     if (body.password === API_PROFILE.hash_value(password)) {
                         done(null, body);
                     } else {
-                        done("E-mail or password is incorrect");
+                        done("Username or password is incorrect");
                     }
+                } else if (err.statusCode === 404) {
+                    done("Username or password is incorrect");
                 } else {
                     done(err);
                 }
