@@ -16,13 +16,13 @@ router.route("/local")
  *     Takes care of google login and sign up       *
  *                                                  *
  ****************************************************/
+
 router.get("/google", passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
-
 // the callback after google has authenticated the user
-//router.use("/google/callback", express.static(process.env.APP_CLIENT_FOLDER));
 router.get('/google/callback', require("./google_callback"));
+
 /****************************************************
  *                                                  *
  *     Takes care of facebook login and sign up     *

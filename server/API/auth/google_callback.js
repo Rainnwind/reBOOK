@@ -7,12 +7,14 @@ module.exports = function(_request, _response, _next) {
         if (!err) {
             _request.logIn(user, function(err) {
                 if (!err) {
-                    _response.send('<script>window.opener._auth_callback("google", true);</script>');
+                    _response.send('<script>window.opener._auth_callback("google", ' + JSON.stringify(user.toJSON()) + ');</script>');
                 } else {
+                    console.trace(err);
                     _response.send('<script>window.opener._auth_callback("google", false);</script>');
                 }
             });
         } else {
+            console.trace(err);
             _response.send('<script>window.opener._auth_callback("google", false);</script>');
         }
     })(_request, _response, _next);

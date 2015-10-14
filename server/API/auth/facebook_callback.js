@@ -7,7 +7,7 @@ module.exports = function(_request, _response, _next) {
         if (!err) {
             _request.logIn(user, function(err) {
                 if (!err) {
-                    _response.send('<script>window.opener._auth_callback("facebook", true);</script>');
+                    _response.send('<script>window.opener._auth_callback("facebook", ' + JSON.stringify(user.toJSON()) + ');</script>');
                 } else {
                     _response.send('<script>window.opener._auth_callback("facebook", false);</script>');
                 }

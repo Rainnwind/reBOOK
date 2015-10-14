@@ -1,9 +1,4 @@
-var NANO = require(process.env.APP_NANO),
-    DB_USERS = NANO.use(process.env.APP_DB_USERS),
-
-    USERS_COUCH_PROFILE = require(process.env.APP_USERS_COUCH_PROFILE),
-    USERS_RESPONSE_PROFILE = require(process.env.APP_USERS_RESPONSE_PROFILE),
-    API_TIME = require(process.env.APP_API_TIME),
+var DB_USERS = require(process.env.APP_DB_USERS),
 
     passport = require("passport"),
     FacebookStrategy = require("passport-facebook");
@@ -18,31 +13,39 @@ module.exports = function() {
 
         },
         function(token, refreshToken, profile, done) {
-            DB_USERS.get(profile.id, function(err, body) {
-                if (!err) {
-                    done(null, body);
-                } else if (err.statusCode === 404) {
-                    var _new_user = new USERS_COUCH_PROFILE();
-                    _new_user._id = profile.id;
-                    _new_user.first_name = profile.name.givenName || undefined;
-                    _new_user.last_name = profile.name.familyName || undefined;
-                    if (profile.emails) {
-                        _new_user.email = profile.emails[0].value || undefined;
-                    }
-                    _new_user.created = API_TIME.get_zero_time();
-
-                    DB_USERS.insert(_new_user, function(err, body) {
-                        if (!err) {
-                            done(null, _new_user);
-                        } else {
-                            console.trace(err);
-                            done("Failed to sign you in via google");
-                        }
-                    })
-                } else {
+            DB_USERS.findOne({
+                "facebook.id": profile.id
+            }, function(err, user) {
+                if (err) {
                     console.trace(err);
-                    done("Failed to sign you in via google");
+                    done(err);
+                } else if (user) {
+                    done(null, user);
+                } else {
+                    if (!profile.emails) {
+                        done("No e-mail provided by facebook");
+                    } else {
+                        new DB_USERS({
+                                email: profile.emails[0].value,
+                                first_name: profile.name.givenName,
+                                last_name: profile.name.familyName,
+                                facebook: {
+                                    id: profile.id,
+                                    token: token
+                                },
+                                password: new Date().getTime().toString()
+                            })
+                            .save(function(err, user) {
+                                if (!err) {
+                                    done(null, user);
+                                } else {
+                                    console.trace(err);
+                                    done("Failed to sign you in via google");
+                                }
+                            });
+                    }
                 }
             });
+
         }));
 }

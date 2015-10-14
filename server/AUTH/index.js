@@ -1,15 +1,19 @@
-var NANO = require(process.env.APP_NANO),
-
-    DB_USERS = NANO.use(process.env.APP_DB_USERS),
+var mongoose = require("mongoose"),
+    DB_USERS = require(process.env.APP_DB_USERS),
     passport = require("passport");
 
 passport.serializeUser(function(user, done) {
-    done(null, user._id);
+    if (!user) {
+        done("Not signed in", null);
+    } else {
+        done(null, user.get("id"));
+    }
 });
 
 passport.deserializeUser(function(id, done) {
-    DB_USERS.get(id, function(err, body) {
-        delete body.password;
+    DB_USERS.findOne({
+        _id: id
+    }, function(err, body) {
         done(err, body);
     });
 });

@@ -1,8 +1,4 @@
-var NANO = require(process.env.APP_NANO),
-
-    DB_USERS = NANO.use(process.env.APP_DB_USERS),
-
-    API_PROFILE = require(process.env.APP_API_PROFILE),
+var DB_USERS = require(process.env.APP_DB_USERS),
 
     passport = require("passport"),
     LocalStrategy = require('passport-local').Strategy;
@@ -10,25 +6,25 @@ var NANO = require(process.env.APP_NANO),
 module.exports = function() {
 
     passport.use('local-login', new LocalStrategy({
-            usernameField: 'username',
+            usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true
         },
-        function(req, username, password, done) {
-            DB_USERS.get(API_PROFILE.username_to_char(username), function(err, body) {
-                if (!err) {
-                    if (body.password === API_PROFILE.hash_value(password)) {
-                        done(null, body);
+        function(req, email, password, done) {
+            DB_USERS.findOne({
+                    email: email.toLowerCase()
+                })
+                .then(function(user) {
+                    if (user.compare_password(password)) {
+                        done(null, user);
                     } else {
-                        done("Username or password is incorrect");
+                        done("Incorrect password");
                     }
-                } else if (err.statusCode === 404) {
-                    done("Username or password is incorrect");
-                } else {
-                    done(err);
-                }
-            });
-
+                })
+                .catch(function(err) {
+                    done("Unknown error");
+                    console.trace(err);
+                });
         }));
 
 }

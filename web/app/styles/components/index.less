@@ -1,3 +1,16 @@
-@import "comp-modal/index.less";
-@import "system-notifications.less";
-@import "check-box.less";
+@import "comp-topbar.less";
+@import "comp-footer.less";
+@import "comp-notification.less";
+@import "comp-check-box";
+
+/**
+ * Removes the dark background and gives a more app feel
+ */
+
+.modal-backdrop.in {
+    opacity: 0;
+}
+
+@import "modal-local-sign-in.less";
+@import "modal-local-sign-up.less";
+@import "modal-report-error.less";

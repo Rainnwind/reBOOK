@@ -1,6 +1,6 @@
 var uuid = require("uuid");
 module.exports = function(_request, _response, _next) {
-    _response._ember_response = new function() {
+    _response._response = new function() {
         var _response_ = _response;
 
         var _this = this;
@@ -8,7 +8,7 @@ module.exports = function(_request, _response, _next) {
         var MESSAGES = [];
 
         var RESPONSE = {
-            "system-notifications": MESSAGES,
+            "notifications": MESSAGES,
         };
 
 
@@ -51,18 +51,6 @@ module.exports = function(_request, _response, _next) {
 
 
         _this._send = function() {
-            var errors = [];
-            MESSAGES.forEach(function(message) {
-                if (message.type === "ERROR") {
-                    errors.push({
-                        message: message.message,
-                        type: message.type
-                    });
-                }
-            });
-            if (errors.length > 0) {
-                RESPONSE.errors = errors;
-            }
             _response_
                 .send(RESPONSE);
         }

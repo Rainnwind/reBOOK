@@ -1,11 +1,11 @@
 require("../../config");
 var mandrill = require('mandrill-api/mandrill'),
     mandrill_client = new mandrill.Mandrill(process.env.APP_MANDILL_API_KEY),
-    ejs = require("ejs");
+    handlebars = require("handlebars");
 
 module.exports.email_confirmation = function(user) {
     var config = require("./config");
-    var template = ejs.compile(require("./templates").email_confirmation);
+    var template = handlebars.compile(require("./templates").email_confirmation);
     var message = config
         .set_html(template(user))
         .set_subject("Welcome to reBOOK")

@@ -1,0 +1,20 @@
+comp-check-box {
+    .none-select();
+    display: block;
+    outline: none;
+    cursor: pointer;
+    div {
+        display: table;
+        &:focus {
+            outline: none;
+            border-bottom: solid 1px #66afe9;
+            border-radius: 4px;
+        }
+    }
+    div, label, i {
+        cursor: inherit;
+    }
+    i.fa {
+        width: 14px;
+    }
+}

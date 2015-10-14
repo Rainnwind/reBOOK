@@ -1,23 +1,28 @@
-var NANO = require(process.env.APP_NANO),
-
-    DB_USERS = NANO.use(process.env.APP_DB_USERS),
-    USERS_COUCH_PROFILE = require(process.env.APP_USERS_COUCH_PROFILE),
+var DB_USERS = require(process.env.APP_DB_USERS),
 
     passport = require("passport"),
     LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function() {
     passport.use('local-signup', new LocalStrategy({
-            usernameField: 'username',
+            usernameField: 'email',
             passwordField: 'password',
             passReqToCallback: true
         },
         function(_request, email, password, done) {
-            DB_USERS.insert(_request.body, function(err, body) {
+            var user = new DB_USERS(_request.body);
+            user.verify_password(_request.body.password, _request.body.confirm_password, function(err) {
                 if (!err) {
-                    done(null, _request.body);
-                } else if (err.statusCode === 409) {
-                    done("Username is already in use")
+                    user.save(function(err, result) {
+                        if (!err) {
+                            done(null, result);
+                        } else if (err.code === 11000 || err.code === 11001) { //Unique index already exists - In this case, the e-mail
+                            done("E-mail already exists");
+                        } else {
+                            console.trace(err);
+                            done(err);
+                        }
+                    });
                 } else {
                     done(err);
                 }
