@@ -17,9 +17,9 @@ var userSchema = new Schema({
                 validator: function(email) {
                     if (!email)
                         return false;
-                    return !mailPattern.test(email.toLowerCase);
+                    return mailPattern.test(email);
                 },
-                message: "E-mail is invalid"
+                message: "'{VALUE}' is an invalid e-mail"
             },
             set: function(email) {
                 return email.toLowerCase();
@@ -171,6 +171,13 @@ userSchema.methods.compare_password = function(password) {
     value_hash.update(password);
     return value_hash.digest("hex") === this.get("password");
 }
+
+
+/**
+ * Setting message for empty report
+ */
+userSchema.paths.email.validators[0].message = "'' in an invalid e-mail";
+
 
 var User = mongoose.model("User", userSchema);
 

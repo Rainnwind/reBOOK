@@ -30,9 +30,21 @@ router.get('/google/callback', require("./google_callback"));
  ****************************************************/
 
 router.get("/facebook", passport.authenticate('facebook', {
-    scope: ['public_profile','email']
+    scope: ['public_profile', 'email']
 }));
 
 router.get("/facebook/callback", require("./facebook_callback"));
+
+
+/**
+ *  Callbacks for:
+ *  google
+ *  facebook
+ */
+router.use("/google/success", express.static(process.env.APP_CLIENT_FOLDER));
+router.use("/google/fail", express.static(process.env.APP_CLIENT_FOLDER));
+router.use("/facebook/success", express.static(process.env.APP_CLIENT_FOLDER));
+router.use("/facebook/fail", express.static(process.env.APP_CLIENT_FOLDER));
+
 
 module.exports = router;

@@ -1,8 +1,8 @@
 var passport = require("passport");
 module.exports = function(_request, _response, _next) {
     passport.authenticate("google", {
-        successRedirect: "/auth/google/success",
-        failureRedirect: "/auth/google/fail"
+        successRedirect: "/api_open/google/success",
+        failureRedirect: "/api_open/google/fail"
     }, function(err, user, info) {
         if (!err) {
             _request.logIn(user, function(err) {

@@ -15,6 +15,7 @@ process.env.APP_EXPRESS_IS_AUTHENTICATED                        = path.join(__di
 
 
 process.env.APP_DB_USERS                                        = path.join(__dirname, "./DATABASES/user.js");
+process.env.APP_DB_BUGS                                         = path.join(__dirname, "./DATABASES/bug.js");
 
 //AUTH
 process.env.APP_AUTH                                            = path.join(__dirname, "./AUTH/index.js");

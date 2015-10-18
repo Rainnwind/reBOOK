@@ -16,16 +16,12 @@ router.use("/profile/settings", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/profile/wishlist", express.static(process.env.APP_CLIENT_FOLDER));
 
 
-router.use("/auth/google/success", express.static(process.env.APP_CLIENT_FOLDER));
-router.use("/auth/google/fail", express.static(process.env.APP_CLIENT_FOLDER));
-router.use("/auth/facebook/success", express.static(process.env.APP_CLIENT_FOLDER));
-router.use("/auth/facebook/fail", express.static(process.env.APP_CLIENT_FOLDER));
 
 router.use("/verify/email/:id/:token", express.static(process.env.APP_CLIENT_FOLDER));
 
 router.use(require(process.env.APP_EXPRESS_REPONSE));
 
-router.use("/api/auth", require("./API/auth"));
+router.use("/api_open", require("./API_OPEN"));
 
 router.use("/api",
     require(process.env.APP_EXPRESS_IS_AUTHENTICATED),
