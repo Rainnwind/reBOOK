@@ -1,20 +1,43 @@
 var APP = angular.module("APP");
-APP.directive("modalReportError", [function() {
+APP.directive("modalReportError", ["_notifications", "$http", function(_notifications, $http) {
     return {
         templateUrl: "components/modal-report-error/template.html",
-        scope: {
-            user: "="
-        },
         controller: ["$scope", "_user", "_notifications", function($scope, _user, _notifications) {
 
-            $scope.name = ((_user.user.first_name || "") + " " + (_user.user.last_name || "")).trim();
-            $scope.email = _user.user.email;
-            $scope.report = "";
-            $scope.contact_later = false;
-            $scope.display_on_site = true;
+            //Importing user from _user
+            $scope.user = _user.user;
+
+            //Listening for change on user.id - Making sure that the modal is always up to date with full name and email
+            $scope.$watch("user.id", function(v) {
+                if (v) {
+                    $scope.info.full_name = ($scope.user.first_name || "").trim() + " " + ($scope.user.last_name || "").trim();
+                    $scope.info.email = $scope.user.email;
+                }
+            });
+
+            //Actual data sent to back-end
+            $scope.info = {
+                full_name: "",
+                email: "",
+                report: "",
+                contact_later: false,
+                display_on_site: true
+            };
 
             $scope.submit = function() {
-                _notifications.INFO("We are about to send this fucker!");
+                _notifications.INFO("Sending your report!");
+                $http({
+                        url: "/api_open/bugs",
+                        method: "POST",
+                        data: $scope.info
+                    })
+                    .then(function(result) {
+                        console.log(result);
+                        _notifications.handle_success(result.data.notifications);
+                    })
+                    .catch(function(err) {
+                        _notifications.handle_error(err.data.notifications);
+                    });
             };
         }],
         link: function(scope, element) {

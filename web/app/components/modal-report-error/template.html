@@ -8,21 +8,21 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="modal-report-error-name" class="control-label">Name (Optional)</label>
-                    <input type="text" id="modal-report-error-name" class="form-control" placeholder="Name (Optional)" ng-value="name">
+                    <input type="text" id="modal-report-error-name" class="form-control" placeholder="Name (Optional)" ng-model="info.full_name">
                 </div>
                 <div class="form-group">
                     <label for="modal-report-error-email" class="control-label">E-mail (Optional)</label>
-                    <input type="text" id="modal-report-error-email" class="form-control" placeholder="E-mail (Optional)" ng-model="email">
+                    <input type="text" id="modal-report-error-email" class="form-control" placeholder="E-mail (Optional)" ng-model="info.email">
                 </div>
                 <div class="form-group">
                     <label for="modal-report-error-report" class="control-label">Bug report</label>
-                    <textarea class="form-control" id="modal-report-error-report" ng-model="report" placeholder="Type your bugreport here. Thank you!"></textarea>
+                    <textarea class="form-control" id="modal-report-error-report" ng-model="info.report" placeholder="Type your bugreport here. Thank you!"></textarea>
                 </div>
                 <div class="form-group">
-                    <comp-check-box bool=contact_later label="May we contact you via e-mail at a later time regarding this issue?"></comp-check-box>
+                    <comp-check-box bool=info.contact_later label="May we contact you via e-mail at a later time regarding this issue?"></comp-check-box>
                 </div>
                 <div class="form-group">
-                    <comp-check-box bool=display_on_site label="May we display this report on our site?"></comp-check-box>
+                    <comp-check-box bool=info.display_on_site label="May we display this report on our site?"></comp-check-box>
                 </div>
             </div>
             <div class="modal-footer">
