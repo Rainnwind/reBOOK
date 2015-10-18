@@ -19,7 +19,7 @@ APP.directive("compCheckBox", [function() {
             };
 
             $scope.class = function() {
-                return $scope.bool ? "fa fa-square-o" : "fa-check-square-o";
+                return $scope.bool ? "fa-check-square-o" : "fa fa-square-o";
             };
 
         }]
