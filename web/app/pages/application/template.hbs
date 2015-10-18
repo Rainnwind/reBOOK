@@ -13,8 +13,6 @@
         {{/each}}
     </div>
     {{outlet}}
-    <button {{action "openModal" "components/comp-modal/create-user"}}>Create user</button>
-    <button {{action "openModal" "components/comp-modal/sign-in"}}>Sign in</button>
     {{outlet "modal"}}
 </div>
 <footer>
