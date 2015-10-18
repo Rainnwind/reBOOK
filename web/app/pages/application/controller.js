@@ -20,11 +20,11 @@ APP.controller("applicationController", ["$scope", "_user", "_notifications", fu
                 $scope.register.password,
                 $scope.register.remember_me)
             .then(function(result) {
-                _notifications.handle_success(result.notifications);
                 $("#modal-local-sign-in").modal("hide");
             })
             .catch(function(err) {
-                _notifications.handle_error(err.data.notifications);
+                //Notifications are automatically set
+                //Only specific action needed here
             });
     };
 
@@ -37,11 +37,11 @@ APP.controller("applicationController", ["$scope", "_user", "_notifications", fu
                 $scope.register.password,
                 $scope.register.confirm_password)
             .then(function(result) {
-                _notifications.handle_success(result.notifications);
                 $("#modal-local-sign-up").modal("hide");
             })
             .catch(function(err) {
-                _notifications.handle_error(err.data.notifications);
+                //Notifications are automatically set
+                //Only specific action needed here
             });
     };
 
