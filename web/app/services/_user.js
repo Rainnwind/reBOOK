@@ -33,7 +33,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", function($q, $http, _noti
             var deferred = $q.defer();
             $http({
                     method: "GET",
-                    url: "/api/auth/local",
+                    url: "/api_open/auth/local",
                     params: {
                         email: email,
                         password: password,
@@ -41,10 +41,12 @@ APP.factory("_user", ["$q", "$http", "_notifications", function($q, $http, _noti
                     }
                 })
                 .then(function(result) {
+                    _notifications.handle_success(result.notifications);
                     angular.copy(result.data.user, _user);
                     deferred.resolve(result);
                 })
                 .catch(function(err) {
+                    _notifications.handle_error(err.data.notifications);
                     deferred.reject(err);
                 });
             return deferred.promise;
@@ -52,13 +54,13 @@ APP.factory("_user", ["$q", "$http", "_notifications", function($q, $http, _noti
         local_sign_up: function(email, first_name, last_name, password, confirm_password) {
             var _this = this;
             var deferred = $q.defer();
-            if (!_user._id) {
+            if (_user._id) {
                 _notifications.ERROR("You are already signed in");
                 deferred.reject();
             } else {
                 $http({
                         method: "POST",
-                        url: "/api/auth/local",
+                        url: "/api_open/auth/local",
                         data: {
                             email: email,
                             first_name: first_name,
@@ -68,10 +70,12 @@ APP.factory("_user", ["$q", "$http", "_notifications", function($q, $http, _noti
                         }
                     })
                     .then(function(result) {
+                        _notifications.handle_success(result.notifications);
                         angular.copy(result.data.user, _user);
                         deferred.resolve(result);
                     })
                     .catch(function(err) {
+                        _notifications.handle_error(err.data.notifications);
                         deferred.reject(err);
                     });
             }
