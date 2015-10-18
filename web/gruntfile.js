@@ -21,19 +21,7 @@ module.exports = function(grunt) {
             }
         },
         clean: ["dist/*", "tmp/*"],
-        concat: { //Concat all files to one BIG file
-            js: { //JavaScript
-                src: [
-                    //"bower_components/angular/angular.js",
-                    //"bower_components/angular-ui-router/release/angular-ui-router.js",
-                    //"bower_components/jquery/dist/jquery.js",
-                    //"bower_components/bootstrap/dist/js/bootstrap.js",
-                    //"app/**/*.js" //Any folder and any file in folder
-                ],
-                filter: "isFile",
-                dest: "tmp/js/main.js"
-            }
-        },
+
         uglify: { //Make it ugly and unreadable - Improves performance a great deal
             development: {
                 options: {
@@ -149,10 +137,8 @@ module.exports = function(grunt) {
 
     if (watch) {
         grunt.registerTask("default", ["jshint:" + environment, "clean", "uglify:" + environment, "less:" + environment, "copy", "watch:" + environment]);
-        //        grunt.registerTask("build", ["jshint:" + environment, "clean", "uglify:" + environment, "less:" + environment, "copy", "watch:" + environment]);
     } else {
         grunt.registerTask("default", ["jshint:" + environment, "clean", "uglify:" + environment, "less:" + environment, "copy"]);
-        //        grunt.registerTask("build", ["jshint:" + environment, "clean", "uglify:" + environment, "less:" + environment, "copy"]);
     }
 
 };
