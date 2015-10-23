@@ -1,3 +1,92 @@
 .navbar-inverse {
     border-radius: 0px;
 }
+
+@keyframes test {
+    25% {
+        width: 25%;
+        left: 0%;
+    }
+    50% {
+        width: 50%;
+        left: 25%;
+    }
+    75% {
+        width: 25%;
+        left: 75%
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+@-webkit-keyframes test {
+    25% {
+        width: 25%;
+        left: 0%;
+    }
+    50% {
+        width: 50%;
+        left: 25%;
+    }
+    75% {
+        width: 25%;
+        left: 75%
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+@-moz-keyframes test {
+    25% {
+        width: 25%;
+        left: 0%;
+    }
+    50% {
+        width: 50%;
+        left: 25%;
+    }
+    75% {
+        width: 25%;
+        left: 75%
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+@-o-keyframes test {
+    25% {
+        width: 25%;
+        left: 0%;
+    }
+    50% {
+        width: 50%;
+        left: 25%;
+    }
+    75% {
+        width: 25%;
+        left: 75%
+    }
+    100% {
+        width: 0%;
+        left: 100%;
+    }
+}
+
+.loadbar {
+    height: 2px;
+    width: 0%;
+    left: 0%;
+    background-color: #337AB7;
+    position: absolute;
+    bottom: -2px;
+    animation-name: test;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
