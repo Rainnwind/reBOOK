@@ -33,6 +33,14 @@ var bugSchema = new Schema({
             }
         },
 
+        subject: {
+            type: String,
+            required: true,
+            unique: false,
+            index: false,
+            trim: true
+        },
+
         report: {
             type: String,
             required: true,
@@ -62,6 +70,16 @@ var bugSchema = new Schema({
             index: true
         },
 
+        seen_by_developers: {
+            type: Boolean,
+            default: false
+        },
+
+        solved: {
+            type: Boolean,
+            default: false
+        },
+
         created_at: {
             type: Date,
             required: true,
@@ -84,10 +102,8 @@ var bugSchema = new Schema({
         var _now = new Date();
         if (this.isNew) {
             this.created_at = _now;
-
-            //Generating a verification code
-            this.verification_code = new mongoose.Types.ObjectId + uuid.v1() + uuid.v4();
         }
+
         //On every update, this variable is update to current date
         this.updated_at = _now;
         next();
@@ -96,10 +112,10 @@ var bugSchema = new Schema({
         getters: true,
         transform: function(doc, ret, options) {
             //Values that should not be sent to client
-            delete ret.password; //Sensitive information that could land in the wrong hands
-            delete ret.verification_code; //Information that could land in the wrong hands
-            delete ret.google; //Sensitive information that could land int the wrong hands
-            delete ret.facebook; //Sensitive information that could land int the wrong hands
+            delete ret.email; //Sensitive information that could land in the wrong hands
+            delete ret.contact_later; //Information that could land in the wrong hands
+            delete ret.display_on_site; //Sensitive information that could land int the wrong hands
+            delete ret.created_by; //Sensitive information that could land int the wrong hands
         }
     });
 
@@ -107,6 +123,7 @@ var bugSchema = new Schema({
  * Setting message for empty report
  */
 bugSchema.paths.report.validators[0].message = "{PATH} cannot be empty";
+bugSchema.paths.subject.validators[0].message = "{PATH} cannot be empty";
 
 var Bug = mongoose.model("Bug", bugSchema);
 
