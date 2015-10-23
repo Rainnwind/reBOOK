@@ -7,6 +7,7 @@ router.use("/find", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/sell", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/wtf", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/bugs", express.static(process.env.APP_CLIENT_FOLDER));
+router.use("/bugs/:page", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/profile", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/profile/overview", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/profile/stats", express.static(process.env.APP_CLIENT_FOLDER));
