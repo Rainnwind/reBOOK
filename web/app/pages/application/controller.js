@@ -1,5 +1,7 @@
 var APP = angular.module("APP");
-APP.controller("applicationController", ["$scope", "_user", "_notifications", function($scope, _user, _notifications) {
+APP.controller("applicationController", ["$scope", "_user", "_notifications", "_load", function($scope, _user, _notifications, _load) {
+
+    $scope.load = _load;
 
     $scope.user = _user.user;
 
@@ -47,8 +49,6 @@ APP.controller("applicationController", ["$scope", "_user", "_notifications", fu
 
     $scope.social_signin = function(destination) {
         _user.social_sign_in(destination)
-            .finally(function() {
-                _this.$apply();
-            });
+            .finally(function() {});
     };
 }]);
