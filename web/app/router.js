@@ -15,7 +15,8 @@ APP.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", functio
             }
 
             return false;
-        }]);
+        }])
+        .when("/bugs/", "/bugs/1/");
 
     $stateProvider
         .state("index", {
@@ -42,8 +43,11 @@ APP.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", functio
             templateUrl: "pages/application/wtf/template.html"
         })
         .state("bugs", {
-            url: "/bugs/",
+            url: "/bugs/{page:[0-9]*}/",
             controller: "bugsController",
+            params: {
+                page: "1"
+            },
             templateUrl: "pages/application/bugs/template.html"
         })
         .state("profile", {
@@ -51,7 +55,7 @@ APP.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", functio
             controller: "profileController",
             templateUrl: "pages/application/profile/template.html",
             resolve: {
-                authorized: ["_user", "_notifications", "$state", "$timeout", function(_user, _notifications, $state, $timeout) {
+                authorized: ["_user", "_notifications", function(_user, _notifications) {
                     return _user.get_user_silent()
                         .then(function() {
                             return true;
@@ -92,6 +96,11 @@ APP.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", functio
             url: "wishlist/",
             controller: "profile/wishlistController",
             templateUrl: "pages/application/profile/wishlist/template.html"
+        });
+
+    $urlRouterProvider
+        .otherwise(function() {
+            alert("DOH! - This site does not exist!");
         });
 
 
