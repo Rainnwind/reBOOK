@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a ui-sref="bugs">
+                <a ui-sref="bugs({page: 1})">
                     <i class="fa fa-bug"></i><u>b</u>ugs reported
                 </a>
             </li>
@@ -69,3 +69,4 @@
         </ul>
     </div>
 </div>
+<div class="loadbar" ng-if="load.count > 0"></div>
