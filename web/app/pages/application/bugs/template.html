@@ -1,1 +1,59 @@
-I'm your bugs
+<div id="bugs">
+    <table class="table table-striped table-hover left">
+        <thead>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    Subject
+                </td>
+                <td>
+                    Reported
+                </td>
+                <td>
+                    Solved?
+                </td>
+                <td>
+                    Seen by developers
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bug in bugs.list | orderBy: '-created_at' | limitTo: bugs.eps:bugs.begin" class="bug.solved ? success : warning" ng-click="display_bug(bug)">
+                <td>
+                    <!--
+                                            _id is defined as follows:
+                                            4 bytes = time
+                                            3 bytes = machine id
+                                            2 bytes = process id
+                                            3 bytes = counter
+                    -->
+                    #{{bug._id | limitTo:6:18}}
+                </td>
+                <td>
+                    {{bug.subject}}
+                </td>
+                <td>
+                    {{bug.created_at}}
+                </td>
+                <td>
+                    {{bug.seen_by_developers}}
+                </td>
+                <td>
+                    {{bug.solved}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <comp-pagination
+    list=bugs.list
+    eps=bugs.eps
+    cp=bugs.cp
+    mp=bugs.mp
+    begin=bugs.begin
+    first=true
+    prev=true
+    next=true
+    last=true>
+    </comp-pagination>
+</div>
