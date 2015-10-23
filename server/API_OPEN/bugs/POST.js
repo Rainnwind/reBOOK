@@ -6,6 +6,7 @@ module.exports = function(_request, _response) {
             _response
                 ._response
                 ._SUCCESS("Thank you for your feedback!")
+                ._DATA("bug", body.toJSON())
                 ._send();
         } else {
             var errors = err.errors;
