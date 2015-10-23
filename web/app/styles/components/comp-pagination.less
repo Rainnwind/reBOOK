@@ -1,0 +1,46 @@
+comp-pagination {
+    display: table;
+    margin: auto;
+    white-space: nowrap;
+    a, table {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    a {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    table {
+        tr {
+            td {
+                display: inline-block;
+                height: 34px;
+                width: 65px;
+                margin-left: 5px;
+                margin-right: 5px;
+                text-align: center;
+                line-height: 34px;
+                border-radius: 4px;
+                padding: 0;
+                position: relative;
+                a {
+                    position: absolute;
+                    margin: 0;
+                    left: 0px;
+                    top: 0px;
+                    height: 100%;
+                    width: 100%;
+                    border-radius: inherit;
+                    color: inherit;
+                    background-color: inherit;
+                    text-decoration: none;
+                    line-height: 34px;
+                    &:hover {
+                        text-decoration: none;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

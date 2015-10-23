@@ -1,0 +1,11 @@
+<a class="btn btn-success" ng-show="first" ui-sref="bugs({page: first_link})">&lt;&lt;</a>
+<a class="btn btn-success" ng-show="prev" ui-sref="bugs({page: prev_link})">&lt;</a>
+<table>
+    <tr>
+        <td class="btn btn-primary" ng-class="{'btn-info': cp == i}" ng-repeat="i in pages">
+            <a ui-sref="bugs({page: i})">{{i}}</a>
+        </td>
+    </tr>
+</table>
+<a class="btn btn-success" ng-show="next" ui-sref="bugs({page: next_link})">&gt;</a>
+<a class="btn btn-success" ng-show="last" ui-sref="bugs({page: last_link})">&gt;&gt;</a>
