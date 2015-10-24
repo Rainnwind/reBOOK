@@ -97,7 +97,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", "_load", function($q, $ht
                 }, 200);
             };
             check_auth_window();
-            window._auth_callback = function(platform, user) {
+            window._auth_callback = function(platform, user, err) {
                 if (user) {
                     _notifications.SUCCESS("Signed you in via " + platform + "!");
                     angular.copy(user, _this.user);
@@ -107,7 +107,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", "_load", function($q, $ht
                     completed = true;
                     deferred.resolve();
                 } else {
-                    _notifications.ERROR("Failed to sign you in via " + platform);
+                    _notifications.ERROR(err);
                     _load.dec_loading();
                     completed = true;
                     deferred.reject();
