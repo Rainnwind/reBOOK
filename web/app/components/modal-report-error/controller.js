@@ -9,7 +9,7 @@ APP.directive("modalReportError", ["_notifications", "$http", "_bugs", function(
 
             var reset_info = function() {
                 $scope.info = {
-                    full_name: ($scope.user.first_name || "").trim() + " " + ($scope.user.last_name || "").trim(),
+                    name: ($scope.user.first_name || "").trim() + " " + ($scope.user.last_name || "").trim(),
                     email: $scope.user.email,
                     subject: "",
                     report: "",
