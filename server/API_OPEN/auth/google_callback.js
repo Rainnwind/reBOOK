@@ -10,12 +10,19 @@ module.exports = function(_request, _response, _next) {
                     _response.send('<script>window.opener._auth_callback("google", ' + JSON.stringify(user.toJSON()) + ');</script>');
                 } else {
                     console.trace(err);
-                    _response.send('<script>window.opener._auth_callback("google", false);</script>');
+                    _response.send('<script>window.opener._auth_callback("google", false, "Failed to sign you in via google");</script>');
                 }
             });
         } else {
-            console.trace(err);
-            _response.send('<script>window.opener._auth_callback("google", false);</script>');
+            if (typeof err === "string")
+                _response.send('<script>window.opener._auth_callback("google", false, "' + err + '");</script>');
+            else if (typeof err === "object") {
+                console.trace(err);
+                _response.send('<script>window.opener._auth_callback("google", false, "' + err.message + '");</script>');
+            } else {
+                console.trace(err);
+                _response.send('<script>window.opener._auth_callback("google", false, "Failed to sign you in via google");</script>');
+            }
         }
     })(_request, _response, _next);
 }
