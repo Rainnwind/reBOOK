@@ -44,13 +44,13 @@ APP.directive("compPagination", [function() {
                 $scope.cp = 1;
             if (!$scope.mp)
                 $scope.mp = 6;
-            $scope.first = $scope.first === true;
+            $scope.first_button = $scope.first === true;
             $scope.first_link = 1;
-            $scope.prev = $scope.prev === true;
+            $scope.prev_button = $scope.prev === true;
             $scope.prev_link = 1;
-            $scope.next = $scope.next === true;
+            $scope.next_button = $scope.next === true;
             $scope.next_link = 1;
-            $scope.last = $scope.last === true;
+            $scope.last_button = $scope.last === true;
             $scope.last_link = 1;
             if (!$scope.begin)
                 $scope.begin = 0;
@@ -111,6 +111,22 @@ APP.directive("compPagination", [function() {
                     $scope.prev_link = 1;
                 if ($scope.next_link > $scope.last_link)
                     $scope.next_link = $scope.last_link;
+                if (pages === 0 || pages === 1) {
+                    $scope.first_button = false;
+                    $scope.prev_button = false;
+                    $scope.next_button = false;
+                    $scope.last_button = false;
+                } else if (pages === 2) {
+                    $scope.first_button = false;
+                    $scope.prev_button = $scope.prev === true;
+                    $scope.next_button = $scope.next === true;
+                    $scope.last_button = false;
+                } else {
+                    $scope.first_button = $scope.first === true;
+                    $scope.prev_button = $scope.prev === true;
+                    $scope.next_button = $scope.next === true;
+                    $scope.last_button = $scope.last === true;
+                }
             };
         }]
     };

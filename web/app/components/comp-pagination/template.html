@@ -1,11 +1,16 @@
-<a class="btn btn-success" ng-show="first" ui-sref="bugs({page: first_link})">&lt;&lt;</a>
-<a class="btn btn-success" ng-show="prev" ui-sref="bugs({page: prev_link})">&lt;</a>
+<a class="btn btn-success" ng-if="first_button" ui-sref="bugs({page: first_link})">&lt;&lt;</a>
+<a class="btn btn-success" ng-if="prev_button" ui-sref="bugs({page: prev_link})">&lt;</a>
 <table>
-    <tr>
+    <tr class="big">
         <td class="btn btn-primary" ng-class="{'btn-info': cp == i}" ng-repeat="i in pages">
             <a ui-sref="bugs({page: i})">{{i}}</a>
         </td>
     </tr>
+    <tr class="small">
+        <td class="btn btn-primary">
+            <a>{{cp}} of {{pages.length}}</a>
+        </td>
+    </tr>
 </table>
-<a class="btn btn-success" ng-show="next" ui-sref="bugs({page: next_link})">&gt;</a>
-<a class="btn btn-success" ng-show="last" ui-sref="bugs({page: last_link})">&gt;&gt;</a>
+<a class="btn btn-success" ng-if="next_button" ui-sref="bugs({page: next_link})">&gt;</a>
+<a class="btn btn-success" ng-if="last_button" ui-sref="bugs({page: last_link})">&gt;&gt;</a>
