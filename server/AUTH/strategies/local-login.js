@@ -15,10 +15,14 @@ module.exports = function() {
                     email: email.toLowerCase()
                 })
                 .then(function(user) {
-                    if (user.compare_password(password)) {
-                        done(null, user);
+                    if (user) {
+                        if (user.compare_password(password)) {
+                            done(null, user);
+                        } else {
+                            done("Username or password is incorrect");
+                        }
                     } else {
-                        done("Incorrect password");
+                        done("Username or password is incorrect");
                     }
                 })
                 .catch(function(err) {

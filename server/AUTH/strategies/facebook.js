@@ -9,10 +9,12 @@ module.exports = function() {
 
             clientID: process.env.APP_FACEBOOK_CLIENT_ID,
             clientSecret: process.env.APP_FACEBOOK_SECRET,
-            callbackURL: process.env.APP_FACEBOOK_CALLBACK_URL
+            callbackURL: process.env.APP_FACEBOOK_CALLBACK_URL,
+            profileFields: ["id", "email", "displayName", "name", "gender", "profileUrl"]
 
         },
         function(token, refreshToken, profile, done) {
+            console.log(profile);
             DB_USERS.findOne({
                 "facebook.id": profile.id
             }, function(err, user) {
@@ -23,7 +25,7 @@ module.exports = function() {
                     done(null, user);
                 } else {
                     if (!profile.emails) {
-                        done("No e-mail provided by facebook");
+                        done("No e-mail was provided by facebook");
                     } else {
                         new DB_USERS({
                                 email: profile.emails[0].value,
