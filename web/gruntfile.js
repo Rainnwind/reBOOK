@@ -97,6 +97,11 @@ module.exports = function(grunt) {
                     dest: "dist"
                 }, {
                     expand: true,
+                    cwd: "bower_components/flag-icon-css-3",
+                    src: "flags/**/*",
+                    dest: "dist"
+                }, {
+                    expand: true,
                     cwd: "./",
                     src: "public/**/*",
                     dest: "dist"
