@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router();
 
-router.use("/auth", require("./auth"));
-router.use("/bugs", require("./bugs"));
+router.route("/:current_language")
+    .get(require("./GET"));
+
 module.exports = router;

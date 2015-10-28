@@ -11,33 +11,19 @@ module.exports = function(_request, _response, _next) {
                         ._DATA("user", user.toJSON())
                         ._SUCCESS("You are signed in")
                         ._send();
-                } else if (typeof err === "string") {
+                } else {
                     _response
                         ._response
                         ._ERROR(err)
                         ._STATUS(400)
                         ._send();
-                } else {
-                    console.trace(err);
-                    _response
-                        ._response
-                        ._ERROR("Unknown error")
-                        ._STATUS(500)
-                        ._send();
                 }
             });
-        } else if (typeof err === "string") {
+        } else {
             _response
                 ._response
                 ._ERROR(err)
                 ._STATUS(400)
-                ._send();
-        } else {
-            console.trace(err);
-            _response
-                ._response
-                ._ERROR("Unknown error")
-                ._STATUS(500)
                 ._send();
         }
     })(_request, _response, _next);

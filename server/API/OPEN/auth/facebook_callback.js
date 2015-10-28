@@ -1,8 +1,8 @@
 var passport = require("passport");
 module.exports = function(_request, _response, _next) {
     passport.authenticate("facebook", {
-        successRedirect: "/api_open/facebook/success",
-        failureRedirect: "/api_open/facebook/fail"
+        successRedirect: "/api/open/facebook/success",
+        failureRedirect: "/api/open/facebook/fail"
     }, function(err, user, info) {
         if (!err) {
             _request.logIn(user, function(err) {

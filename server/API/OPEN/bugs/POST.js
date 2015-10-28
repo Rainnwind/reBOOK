@@ -9,16 +9,9 @@ module.exports = function(_request, _response) {
                 ._DATA("bug", body.toJSON())
                 ._send();
         } else {
-            var errors = err.errors;
-            for (var key in errors) {
-                if (errors.hasOwnProperty(key)) {
-                    _response
-                        ._response
-                        ._ERROR(errors[key].message)
-                }
-            }
             _response
                 ._response
+                ._ERROR(err)
                 ._STATUS(400)
                 ._send();
         }

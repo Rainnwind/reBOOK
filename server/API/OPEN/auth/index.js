@@ -29,9 +29,7 @@ router.get('/google/callback', require("./google_callback"));
  *                                                  *
  ****************************************************/
 
-router.get("/facebook", passport.authenticate('facebook', {
-    scope: 'email'
-}));
+router.get("/facebook", passport.authenticate('facebook'));
 
 router.get("/facebook/callback", require("./facebook_callback"));
 
