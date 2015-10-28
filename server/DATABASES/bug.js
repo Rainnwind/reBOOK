@@ -93,7 +93,7 @@ var bugSchema = new Schema({
             required: true,
             unique: false,
             index: false,
-            default: new Date()
+            default: Date.now
         }
     }, {
         strict: true //Only data relevant to this schema is saved
