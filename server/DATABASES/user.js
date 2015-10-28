@@ -7,6 +7,16 @@ var mongoose = require("mongoose"),
 
 var userSchema = new Schema({
 
+        is_admin: {
+            type: Boolean,
+            required: false,
+            unique: false,
+            index: true,
+            set: function() {
+                return false;
+            }
+        },
+
         email: {
             type: String,
             required: true,
@@ -95,7 +105,7 @@ var userSchema = new Schema({
             required: true,
             unique: false,
             index: false,
-            default: new Date()
+            default: Date.now
         },
 
         verified_since: {
