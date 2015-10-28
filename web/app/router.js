@@ -96,13 +96,17 @@ APP.config(["$locationProvider", "$stateProvider", "$urlRouterProvider", functio
             url: "wishlist/",
             controller: "profile/wishlistController",
             templateUrl: "pages/application/profile/wishlist/template.html"
+        })
+        .state("admin", {
+            url: "/admin/",
+            controller: "adminController",
+            templateUrl: "pages/application/admin/template.html"
         });
 
     $urlRouterProvider
         .otherwise(function() {
             alert("DOH! - This site does not exist!");
         });
-
 
     $locationProvider.html5Mode(true); //Removes the HASHTAG
 }]);

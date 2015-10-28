@@ -1,0 +1,17 @@
+<div id="application_admin">
+    <div class="language" ng-repeat="language in language.languages track by language._id">
+        <div class="left">
+            <label>Base</label>
+            {{language.base}}
+            <label>English</label>
+            <textarea ng-model="language.english"></textarea>
+            <label>Danish</label>
+            <textarea ng-model="language.danish"></textarea>
+        </div>
+        <div class="right">
+            <button class="btn btn-success" ng-click="save_language(language)">
+            <comp-language base="Save"></comp-language>
+            </button>
+        </div>
+    </div>
+</div>
