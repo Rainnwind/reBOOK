@@ -1,6 +1,6 @@
 var APP = angular.module("APP");
 
-APP.factory("_load", ["$q", "$http", "$timeout", function($q, $http, $timeout) {
+APP.factory("_load", ["$q", "$http", function($q, $http) {
     return {
         count: 0,
         inc_loading: function() {
