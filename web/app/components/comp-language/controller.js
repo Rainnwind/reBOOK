@@ -23,7 +23,8 @@ APP.directive("compLanguage", [function() {
 
             $scope.open_translation = function($event) {
                 if ($($event.target).hasClass("admin-tool-gear")) {
-                    alert("OPEN THE FUCKER123");
+                    _language.set_translation_language($scope.base);
+                    $("#modal-language").modal("toggle");
                 }
             };
 
