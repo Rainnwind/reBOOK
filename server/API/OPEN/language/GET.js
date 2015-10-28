@@ -10,7 +10,6 @@ module.exports = function(_request, _response) {
     }, function(err, body) {
         if (!err) {
             if (!body) { //Create language to database
-                console.log("Creating the new language object");
                 var translation = new DB_LANGUAGE({
                     base: base,
                 });
