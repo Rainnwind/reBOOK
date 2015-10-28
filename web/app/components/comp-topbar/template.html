@@ -1,10 +1,10 @@
 <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" ui-sref="index">reBOOK</a>
     </div>
@@ -12,60 +12,90 @@
         <ul class="nav navbar-nav">
             <li>
                 <a ui-sref="find">
-                    <i class="fa fa-search"></i><u>F</u>ind
+                <i class="fa fa-search"></i><comp-language base="Find"></comp-language>
                 </a>
             </li>
             <li>
                 <a ui-sref="sell">
-                    <i class="fa fa-usd"></i><u>S</u>ell
+                <i class="fa fa-usd"></i><comp-language base="Sell"></comp-language>
                 </a>
             </li>
             <li>
                 <a ui-sref="wtf">
-                    <u>W</u>TF!?
+                <comp-language base="WTF!?"></comp-language>
                 </a>
             </li>
             <li>
                 <a ui-sref="bugs({page: 1})">
-                    <i class="fa fa-bug"></i><u>b</u>ugs reported
+                <i class="fa fa-bug"></i><comp-language base="bugs reported"></comp-language>
                 </a>
             </li>
         </ul>
+        <!-- User menu or sign in/up option -->
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" ng-if="user._id != undefined">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-star text-yellow"></i>{{user.first_name}} {{user.last_name}}<b class="caret"></b>
+                <i class="fa fa-star"></i>{{user.first_name}} {{user.last_name}}<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li>
-                        <a ui-sref="profile.overview"><i class="fa fa-fw fa-paint-brush" data-toggle="dropdown"></i><u>O</u>verview</a>
+                    <li ng-if="user.is_admin">
+                        <a ui-sref="admin">
+                        <i class="fa fa-fw fa-paint-brush"></i><comp-language base="Admin"></comp-language>
+                        </a>                        
                     </li>
                     <li>
-                        <a ui-sref="profile.stats"><i class="fa fa-fw fa-shopping-cart" data-toggle="dropdown"></i>S<u>t</u>ats</a>
+                        <a ui-sref="profile.overview">
+                        <i class="fa fa-fw fa-paint-brush"></i><comp-language base="Overview"></comp-language>
+                        </a>
                     </li>
                     <li>
-                        <a ui-sref="profile.messages"><i class="fa fa-fw fa-shopping-cart" data-toggle="dropdown"></i><u>M</u>essages</a>
+                        <a ui-sref="profile.stats">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Stats"></comp-language>
+                        </a>
                     </li>
                     <li>
-                        <a ui-sref="profile.books"><i class="fa fa-fw fa-shopping-cart" data-toggle="dropdown"></i><u>B</u>ooks</a>
+                        <a ui-sref="profile.messages">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Messages"></comp-language>
+                        </a>
                     </li>
                     <li>
-                        <a ui-sref="profile.settings"><i class="fa fa-fw fa-shopping-cart" data-toggle="dropdown"></i><u>S</u>ettings</a>
+                        <a ui-sref="profile.books">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Books"></comp-language>
+                        </a>
                     </li>
                     <li>
-                        <a ui-sref="profile.wishlist"><i class="fa fa-fw fa-shopping-cart" data-toggle="dropdown"></i><u>W</u>ishlist</a>
+                        <a ui-sref="profile.settings">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Settings"></comp-language>
+                        </a>
                     </li>
                     <li>
-                        <a href="/logout" target="_self"><i class="fa fa-fw fa-shopping-cart"></i>Sign out</a>
+                        <a ui-sref="profile.wishlist">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Wishlist"></comp-language>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout" target="_self">
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Sign out"></comp-language>
+                        </a>
                     </li>
                 </ul>
             </li>
-            <div ng-if="user._id == undefined">
+            <li ng-if="user._id == undefined">
                 <form class="navbar-form navbar-right" role="search">
-                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-local-sign-in">Sign in</button>
-                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modal-local-sign-up">Sign up</button>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modal-local-sign-in"><comp-language base="Sign in"></comp-language></a></button>
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modal-local-sign-up"><comp-language base="Sign up"></comp-language></button>
                 </form>
-            </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{language.visual_language()}}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="(key,value) in language.avail_languages" ng-click="language.change_language(key)" ng-if="key != language.current_language">
+                        <a>
+                        {{value}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

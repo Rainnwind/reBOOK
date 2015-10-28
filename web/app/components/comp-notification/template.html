@@ -1,6 +1,6 @@
 <div ng-click="remove()" class="notification-box notifications-inner-{{class}} {{outer_class}}">
     <i class="fa {{icon}}"></i>
     <div class="notifications-inner-{{class}}-message">
-        {{message}}
+        <comp-language base={{message}}></comp-language>
     </div>
 </div>
