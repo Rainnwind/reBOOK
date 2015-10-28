@@ -1,9 +1,73 @@
 #bugs {
-    .table {
-        .none-select();
-        tbody {
-            tr {
-                cursor: pointer;
+    .bug-head {
+        background-color: purple;
+        line-height: 30px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        &-row {
+            &-short {
+                &-column {}
+            }
+        }
+    }
+    .bug-body {
+        &-row {
+            &:nth-child(odd) {
+                background-color: yellow;
+            }
+            &:nth-child(even) {
+                background-color: blue;
+            }
+            &-short {
+                &-column {
+                    .none-select();
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    /**
+     * Common for both
+     */
+    .bug-head, .bug-body {
+        &-row {
+            &-short {
+                .flex();
+                white-space: nowrap;
+                &-column {
+                    height: 30px;
+                    padding: 0px 10px 0px 10px;
+                    background-color: inherit;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    &:nth-child(1) {
+                        width: 100px;
+                        min-width: 100px;
+                        @media (max-width: 800px) {
+                            display: none;
+                        }
+                    }
+                    &:nth-child(2) {
+                        .flex-grow(1);
+                    }
+                    &:nth-child(3) {
+                        width: 100px;
+                        min-width: 100px;
+                        @media (max-width: 300px) {
+                            display: none;
+                        }
+                    }
+                    &:nth-child(4) {
+                        width: 80px;
+                        min-width: 80px;
+                        @media (max-width: 400px) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &-extended {
+                background-color: yellow;
             }
         }
     }

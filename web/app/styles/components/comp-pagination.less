@@ -1,14 +1,31 @@
 comp-pagination {
     display: table;
-    margin: auto;
+    margin: 20px auto 0px auto;
     white-space: nowrap;
     a, table {
         display: inline-block;
         vertical-align: middle;
+        tr {
+            td {}
+        }
+        tr.big {}
+        tr.small {
+            display: none;
+        }
     }
     a {
-        margin-left: 5px;
-        margin-right: 5px;
+        margin: 0px 5px 0px 5px;
+        @media(max-width: 800px) {
+            margin: 0px 0px 0px 0px;
+        }
+    }
+    @media(max-width: 250px) {
+        .btn-success:nth-child(1) {
+            display: none;
+        }
+        .btn-success:nth-child(4) {
+            display: none;
+        }
     }
     table {
         tr {
@@ -16,13 +33,18 @@ comp-pagination {
                 display: inline-block;
                 height: 34px;
                 width: 65px;
-                margin-left: 5px;
-                margin-right: 5px;
+                margin: 0px 5px 0px 5px;
                 text-align: center;
                 line-height: 34px;
                 border-radius: 4px;
                 padding: 0;
                 position: relative;
+                @media(max-width: 800px) {
+                    margin: 0px 0px 0px 0px;
+                }
+                @media(max-width:650px) {
+                    width: 34px;
+                }
                 a {
                     position: absolute;
                     margin: 0;
@@ -39,6 +61,18 @@ comp-pagination {
                         text-decoration: none;
                         color: white;
                     }
+                }
+            }
+        }
+        @media(max-width: 450px) {
+            tr.big {
+                display: none;
+            }
+            tr.small {
+                display: initial;
+                td {
+                    width: 60px;
+                    margin: 0px 5px 0px 5px;
                 }
             }
         }
