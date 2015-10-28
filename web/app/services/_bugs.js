@@ -10,7 +10,7 @@ APP.factory("_bugs", ["$q", "$http", "_notifications", "_load", function($q, $ht
             var _this = this;
             var deferred = $q.defer();
             if (!initialized) {
-                _load.get("/api_open/bugs")
+                _load.get("/api/open/bugs")
                     .then(function(result) {
                         initialized = true;
                         result.data.bugs.forEach(function(bug) {
@@ -28,7 +28,7 @@ APP.factory("_bugs", ["$q", "$http", "_notifications", "_load", function($q, $ht
         submit: function(data) {
             var _this = this;
             var deferred = $q.defer();
-            $http.post("/api_open/bugs", data)
+            $http.post("/api/open/bugs", data)
                 .then(function(result) {
                     deferred.resolve();
                     if (data.display_on_site) {

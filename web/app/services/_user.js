@@ -10,7 +10,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", "_load", function($q, $ht
             var _this = this;
             var deferred = $q.defer();
             if (!_this.user._id) {
-                _load.get("/api/users/user")
+                _load.get("/api/closed/users/user")
                     .then(function(result) {
                         angular.copy(result.data.user, _this.user);
                         deferred.resolve(result.data.user);
@@ -26,7 +26,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", "_load", function($q, $ht
         local_sign_in: function(email, password, remember_me) {
             var _this = this;
             var deferred = $q.defer();
-            _load.get("/api_open/auth/local", {
+            _load.get("/api/open/auth/local", {
                     email: email,
                     password: password,
                     remember_me: remember_me
@@ -49,7 +49,7 @@ APP.factory("_user", ["$q", "$http", "_notifications", "_load", function($q, $ht
                 _notifications.ERROR("You are already signed in");
                 deferred.reject();
             } else {
-                _load.post("/api_open/auth/local", {
+                _load.post("/api/open/auth/local", {
                         email: email,
                         first_name: first_name,
                         last_name: last_name,
