@@ -2,6 +2,11 @@ var express = require('express'),
     router = express.Router();
 var passport = require("passport");
 
+router.use(require(process.env.APP_EXPRESS_REPONSE));
+
+router.use("/admin", require(process.env.APP_EXPRESS_IS_ADMIN), express.static(process.env.APP_CLIENT_FOLDER));
+router.use("/pages/application/admin/*", require(process.env.APP_EXPRESS_IS_ADMIN));
+
 router.use("/", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/find", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/sell", express.static(process.env.APP_CLIENT_FOLDER));
@@ -17,17 +22,9 @@ router.use("/profile/settings", express.static(process.env.APP_CLIENT_FOLDER));
 router.use("/profile/wishlist", express.static(process.env.APP_CLIENT_FOLDER));
 
 
-
 router.use("/verify/email/:id/:token", express.static(process.env.APP_CLIENT_FOLDER));
 
-router.use(require(process.env.APP_EXPRESS_REPONSE));
-
-router.use("/api_open", require("./API_OPEN"));
-
-router.use("/api",
-    require(process.env.APP_EXPRESS_IS_AUTHENTICATED),
-    require("./API"));
-
+router.use("/api", require(process.env.APP_API_INDEX));
 
 // =====================================
 // LOGOUT ==============================
