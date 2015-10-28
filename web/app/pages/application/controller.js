@@ -1,16 +1,18 @@
 var APP = angular.module("APP");
-APP.controller("applicationController", ["$scope", "_user", "_notifications", "_load", function($scope, _user, _notifications, _load) {
+APP.controller("applicationController", ["$scope", "_user", "_notifications", "_load", "_language", function($scope, _user, _notifications, _load, _language) {
+
+    $scope.language = _language;
 
     $scope.load = _load;
 
     $scope.user = _user.user;
 
     $scope.register = {
-        email: "re@shipfeed.dk",
-        first_name: "Rane",
-        last_name: "Eriksen",
-        password: "123123123",
-        confirm_password: "123123123",
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+        confirm_password: "",
         remember_me: false
     };
 
