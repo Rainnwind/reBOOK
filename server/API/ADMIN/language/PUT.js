@@ -2,7 +2,7 @@ var DB_LANGUAGE = require(process.env.APP_DB_LANGUAGE);
 var ObjectId = require('mongoose').Types.ObjectId;
 module.exports = function(_request, _response) {
     DB_LANGUAGE.update({
-        _id: new ObjectId(_request.body._id)
+        base: _request.body.base
     }, {
         $set: {
             english: _request.body.english,
@@ -20,7 +20,7 @@ module.exports = function(_request, _response) {
                 ._ERROR("Unknown error")
                 ._STATUS(500)
                 ._send();
-            console.log(err);
+            console.trace(err);
         }
     })
 };
