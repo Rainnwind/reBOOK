@@ -11,9 +11,4 @@ APP.controller("bugsController", ["$scope", "_bugs", "$stateParams", function($s
     (function init() {
         _bugs.get_bugs();
     })();
-
-    $scope.display_bug = function(bug) {
-        bug.display = !bug.display;
-        console.log(bug);
-    };
 }]);
