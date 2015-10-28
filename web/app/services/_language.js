@@ -9,6 +9,7 @@ APP.factory("_language", ["_load", "_notifications", function(_load, _notificati
             english: "English"
         },
         languages: [],
+        translate_language: undefined,
         visual_language: function() {
             return this.current_language.charAt(0).toUpperCase() + this.current_language.slice(1);
         },
@@ -19,7 +20,9 @@ APP.factory("_language", ["_load", "_notifications", function(_load, _notificati
             var _this = this;
             var _current_language = _this.current_language;
             if (!_this[base])
-                _this[base] = {};
+                _this[base] = {
+                    base: base
+                };
             if (!_this[base][_current_language]) {
                 _this[base][_current_language] = base;
                 _load.get("/api/open/language/" + _current_language, {
@@ -49,16 +52,25 @@ APP.factory("_language", ["_load", "_notifications", function(_load, _notificati
             }
         },
         save_language: function(language) {
-            console.log(language);
-            _load.put("/api/admin/language", language)
+            return _load.put("/api/admin/language", language)
                 .then(function(result) {
-                    console.log(result);
-                    console.log(result.data.notifications);
                     _notifications.handle_success(result.data.notifications);
                 })
                 .catch(function(err) {
                     _notifications.handle_error(err.data.notifications);
                 });
+        },
+        set_translation_language: function(base) {
+            var _this = this;
+            var _current_language = _this.current_language;
+            for (var key in _this.avail_languages) {
+                if (_this.avail_languages.hasOwnProperty(key)) {
+                    _this.current_language = key;
+                    _this.check_translation(base);
+                }
+            }
+            _this.translate_language = _this[base];
+            _this.current_language = _current_language;
         }
     };
 
