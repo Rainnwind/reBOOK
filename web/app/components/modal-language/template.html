@@ -1,0 +1,20 @@
+<div class="modal fade" id="modal-language" tabindex="-1" role="dialog">
+    <form ng-submit="submit()" class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Translation</h4>
+                <h6>{{_language.translate_language.base}}</h6>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" ng-repeat="(key, value) in _language.avail_languages">
+                    <label for="modal-language-report" class="control-label">{{value}}</label>
+                    <textarea class="form-control" id="modal-language-report" ng-model="_language.translate_language[key]" placeholder={{_language.translate_language.base}}></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Save translation" class="btn btn-success">
+            </div>
+        </div>
+    </form>
+</div>
