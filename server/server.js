@@ -3,7 +3,13 @@ require("./settings.js");
 
 
 var mongoose = require("mongoose");
-mongoose.connect(process.env.APP_MONGOOSE_DRIVER + "://" + process.env.APP_MONGOOSE_HOST + "/rebook");
+mongoose.connect(
+    process.env.APP_MONGOOSE_DRIVER +
+    process.env.APP_MONGOOSE_USER + ":" +
+    process.env.APP_MONGOOSE_PASSWORD + "@" +
+    process.env.APP_MONGOOSE_HOST + ":" +
+    process.env.APP_MONGOOSE_PORT +
+    process.env.APP_MONGOOSE_DB);
 var db = mongoose.connection;
 db.once("open", function() {
 
