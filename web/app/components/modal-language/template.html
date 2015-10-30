@@ -8,12 +8,17 @@
             </div>
             <div class="modal-body">
                 <div class="form-group" ng-repeat="(key, value) in _language.avail_languages">
-                    <label for="modal-language-report" class="control-label">{{value}}</label>
+                    <label for="modal-language-report" class="control-label">{{value}}({{key}})</label>
                     <textarea class="form-control" id="modal-language-report" ng-model="_language.translate_language[key]" placeholder={{_language.translate_language.base}}></textarea>
+                    <button class="btn btn-primary" ng-click="translate_with_google($event, _language.translate_language.base, key)">
+                        <comp-language base="Translate with google"></comp-language>
+                    </button>
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" value="Save translation" class="btn btn-success">
+                <button class="btn btn-success">
+                    <comp-language base="Save translation"></comp-language>
+                </button>
             </div>
         </div>
     </form>
