@@ -40,7 +40,7 @@
                 <ul class="dropdown-menu">
                     <li ng-if="user.is_admin">
                         <a ui-sref="admin">
-                        <i class="fa fa-fw fa-paint-brush"></i><comp-language base="Admin"></comp-language>
+                        <i class="fa fa-fw fa-paint-brush"></i><comp-language base="Administrator"></comp-language>
                         </a>                        
                     </li>
                     <li>
@@ -50,7 +50,7 @@
                     </li>
                     <li>
                         <a ui-sref="profile.stats">
-                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Stats"></comp-language>
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Statistics"></comp-language>
                         </a>
                     </li>
                     <li>
@@ -60,7 +60,7 @@
                     </li>
                     <li>
                         <a ui-sref="profile.books">
-                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="Books"></comp-language>
+                        <i class="fa fa-fw fa-shopping-cart"></i><comp-language base="My books"></comp-language>
                         </a>
                     </li>
                     <li>
@@ -87,8 +87,8 @@
                 </form>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{language.visual_language()}}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{language.avail_languages[language.current_language]}}<b class="caret"></b></a>
+                <ul class="dropdown-menu languages">
                     <li ng-repeat="(key,value) in language.avail_languages" ng-click="language.change_language(key)" ng-if="key != language.current_language">
                         <a>
                         {{value}}
