@@ -17,6 +17,16 @@ var userSchema = new Schema({
             }
         },
 
+        api_keys: {
+            language: {
+                type: String,
+                required: false,
+                unique: false,
+                index: false,
+                default: undefined
+            }
+        },
+
         email: {
             type: String,
             required: true,
