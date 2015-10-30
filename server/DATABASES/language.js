@@ -10,7 +10,42 @@ var languageSchema = new Schema({
             index: true
         },
 
-        english: {
+        arabic: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        bulgarian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        catalan: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        chinese: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        croatian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        czech: {
             type: String,
             required: false,
             unique: false,
@@ -24,6 +59,245 @@ var languageSchema = new Schema({
             index: true
         },
 
+        dutch: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+
+        english: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        estonian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        finnish: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        french: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        german: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        greek: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        hebrew: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        hindi: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        hungarian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        icelandic: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        indonesian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        italian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        japanese: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        korean: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        latvian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        lithuanian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        malay: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        norwegian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        persian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        polish: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        portuguese: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        romanian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        russian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        serbian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        slovak: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        slovenian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        spanish: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        swedish: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        thai: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        turkish: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        ukrainian: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        urdu: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+
+        vietnamese: {
+            type: String,
+            required: false,
+            unique: false,
+            index: true
+        },
+        
         created_by: {
             type: Schema.Types.ObjectId,
             required: false,
